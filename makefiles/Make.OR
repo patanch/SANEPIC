@@ -1,0 +1,6 @@
+CCC = mpic++ -g -O0
+
+FITS = -I/group/cmb/litebird/usr/patanch/packages/cfitsio-4.1.0/include/ -L/group/cmb/litebird/usr/patanch/packages/cfitsio/lib/ -lcfitsio
+
+FFTW = -I/sw/packages/fftw/fftw3/include/  -L/sw/packages/fftw/fftw3/lib/ -lfftw3
+
