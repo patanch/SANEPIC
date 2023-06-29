@@ -1,0 +1,6 @@
+CCC = mpiicpc -g -O0
+
+FITS = -I$(CFITSIO_INCLUDE) -L$(CFITSIO_LIB) -lcfitsio
+
+FFTW = -I$(FFTW_INCLUDE)  -L$(FFTW_LIB) -lfftw3
+
