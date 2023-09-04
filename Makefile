@@ -1,11 +1,12 @@
-CCC = mpic++ -g -O0
+CCC = mpic++ -g -O2
+# CCC = mpiicc -g -O2
 
 CC = g++  -g -O0
 
 
-FITS = -I/group/cmb/litebird/usr/patanch/packages/cfitsio-4.1.0/include/ -L/group/cmb/litebird/usr/patanch/packages/cfitsio/lib/ -lcfitsio
+FITS = -I${CFITSIO_INCLUDE} -L${CFITSIO_LIB} -lcfitsio
 
-FFTW = -I/sw/packages/fftw/fftw3/include/  -L/sw/packages/fftw/fftw3/lib/ -lfftw3
+FFTW = -I${FFTW_INCLUDE} -L${FFTW_LIB} -lfftw3
 
 
 #You need to load cfitsio library
@@ -15,12 +16,44 @@ FFTW = -I/sw/packages/fftw/fftw3/include/  -L/sw/packages/fftw/fftw3/lib/ -lfftw
 #export LD_LIBRARY_PATH = $(LD_LIBRARY_PATH):$(DIR_LIB) 
 
 
-mpi : Sanepic.cc
-	${CCC} $(FITS) $(FFTW) Sanepic.cc -o Sanepic
+mpi : src/sanepic.cc
+	${CCC} $(FITS) $(FFTW) -D_DEBUG1 src/sanepic.cc -o sanepic
 
 
 clean :
-	-rm Sanepic *.o core.*
+	-rm sanepic *.o core.*
 
 
-#mpicxx MainSanepicCorr_mpi.cc todprocess.cc map_making.c -lfftw3 -lcfitsio -L/home/patanch/Libs/libgetdata-20070626/.libs -I/home/patanch/Libs/libgetdata-20070626 -lgetdata 
+
+# # Makefile for Sanepic
+
+# .PHONY: default gcc mpi clean
+
+# default: mpi
+
+# # EXE = sanepic_mpi
+
+# # gcc: CC = gcc
+# # gcc: CPPFLAGS += -g -O0
+# # gcc: EXE = sanepic_gcc
+
+# mpi: CC = mpic++
+# mpi: CPPFLAGS += -g -O0
+# mpi: EXE = sanepic_mpi
+
+# LIBS += -lfftw3
+
+# OBJS = src/sanepic.o
+
+# $(EXE): $(OBJS)
+# 		@echo ${EXE}
+# 		$(CC) $(CPPFLAGS) $(OBJS) $(LIBS) $(OPTIONS) -o $(EXE)
+
+# %.o: src/%.cc
+# 		$(CC) -c $(CPPFLAGS) $(OPTIONS) $< -o $@
+
+# EXE_LIST = sanepic_gcc sanepic_mpi
+
+# clean:
+# 		@echo $(EXE)
+# 		rm -f $(EXE_LIST) $(OBJS)
