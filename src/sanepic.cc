@@ -14,9 +14,9 @@
 #include "mpi.h"
 #include <cstring>
 
-extern "C" {
-#include <fitsio.h>
-}
+// extern "C" {
+// #include <fitsio.h>
+// }
 
 extern "C" {
 void GetProcMem(long *vmem, long *phymem);

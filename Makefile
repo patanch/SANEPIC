@@ -1,59 +1,19 @@
-CCC = mpic++ -g -O2
-# CCC = mpiicc -g -O2
+# usage: make ARCH=arch
+# or export ARCH=arch 
+# where:
+#        arch = OR
+#        arch = Marconi
 
-CC = g++  -g -O0
+.PHONY: default mpi clean
 
-
-FITS = -I${CFITSIO_INCLUDE} -L${CFITSIO_LIB} -lcfitsio
-
-FFTW = -I${FFTW_INCLUDE} -L${FFTW_LIB} -lfftw3
-
-
-#You need to load cfitsio library
-
-#DIR_LIB = /group/cmb/litebird/usr/ysakurai/packages/cfitsio/lib/                                                                                                                       
-
-#export LD_LIBRARY_PATH = $(LD_LIBRARY_PATH):$(DIR_LIB) 
-
+default: mpi
 
 mpi : src/sanepic.cc
-	${CCC} $(FITS) $(FFTW) -D_DEBUG1 src/sanepic.cc -o sanepic
-
+	$(eval include makefiles/Make.$(ARCH))
+	${CCC} src/sanepic.cc -o sanepic $(FITS) $(FFTW)
 
 clean :
-	-rm sanepic *.o core.*
+	rm -f *.o core.* sanepic
 
 
-
-# # Makefile for Sanepic
-
-# .PHONY: default gcc mpi clean
-
-# default: mpi
-
-# # EXE = sanepic_mpi
-
-# # gcc: CC = gcc
-# # gcc: CPPFLAGS += -g -O0
-# # gcc: EXE = sanepic_gcc
-
-# mpi: CC = mpic++
-# mpi: CPPFLAGS += -g -O0
-# mpi: EXE = sanepic_mpi
-
-# LIBS += -lfftw3
-
-# OBJS = src/sanepic.o
-
-# $(EXE): $(OBJS)
-# 		@echo ${EXE}
-# 		$(CC) $(CPPFLAGS) $(OBJS) $(LIBS) $(OPTIONS) -o $(EXE)
-
-# %.o: src/%.cc
-# 		$(CC) -c $(CPPFLAGS) $(OPTIONS) $< -o $@
-
-# EXE_LIST = sanepic_gcc sanepic_mpi
-
-# clean:
-# 		@echo $(EXE)
-# 		rm -f $(EXE_LIST) $(OBJS)
+#mpicxx MainSanepicCorr_mpi.cc todprocess.cc map_making.c -lfftw3 -lcfitsio -L/home/patanch/Libs/libgetdata-20070626/.libs -I/home/patanch/Libs/libgetdata-20070626 -lgetdata

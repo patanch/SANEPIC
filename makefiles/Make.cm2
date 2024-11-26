@@ -1,0 +1,9 @@
+##modules loaded
+##module load cfitsio/4.0.0-intel21 fftw/3.3.10-intel21-impi-openmp
+
+CCC = mpiicpc -g -O3
+
+FITS = $(CFITSIO_INC) $(CFITSIO_LIB)
+
+FFTW = $(FFTW_INC)  $(FFTW_LIB) -lfftw3
+
