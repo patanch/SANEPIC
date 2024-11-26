@@ -14,6 +14,7 @@
 #include "mpi.h"
 #include <cstring>
 
+// CFITSIO not needed
 // extern "C" {
 // #include <fitsio.h>
 // }
@@ -485,8 +486,6 @@ int main(int argc, char *argv[]) {
   long *tmpsegnum;
   tmpsegnum = new long[2 * nsegtot];
 
-  printf("Reading sample list file %s\n", filesegnum.c_str());
-
   #ifdef _DEBUG1
   printf("number of elements read = %ld\n", 2*nsegtot-1-0+1);
   printf("size of tmpsegnum array = %ld\n", 2*nsegtot);
@@ -913,8 +912,6 @@ int main(int argc, char *argv[]) {
     }
   }
   npix = ll;
-
-  printf("npix = %ld, rank = %d \n", npix, rank);
 
   delete[] pixon;
 
@@ -3167,8 +3164,6 @@ void read_bolo_offsets(string bolo, string file_BoloOffsets, double *offsets) {
   char boloname[100];
   char tempchar[100];
   FILE *fp;
-
-  printf("%s\n", file_BoloOffsets.c_str());
 
   if ((fp = fopen(file_BoloOffsets.c_str(), "r")) == NULL) {
     cerr << "ERROR: Can't find offset file. Exiting. \n";
