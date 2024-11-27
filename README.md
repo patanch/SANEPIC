@@ -44,15 +44,24 @@ The files in this directory tree are following:
 
 3. **`pointings_dec.bi`**
 
-    This binary file contains the declination angle of the detector pointing. Note that this file name is generic (not related to a detector). Be careful when you are using multiple detectors for map-making. Same applies to the three files below.
+    This binary file contains the declination angle (colatitude) of the detector pointing. Note that this file name is generic (not related to a detector). Be careful when you are using multiple detectors for map-making. Same applies to the three files below.
 
-4. **`pointings_psi.bi`**
+4. **`pointings_ra.bi`**
+
+    This binary file contains the right ascension angle (longitude) of the detector pointing.
+
+5. **`pointings_psi.bi`**
 
     This binary file contains the polarization angle associated with the pointing.
 
-5. **`pointings_ra.bi`**
-
-    This binary file contains the right ascension angle of the detector pointing.
+    > [!NOTE]
+    > `SANEPIC` and `litebird_sim` use different angle conventions for colatitude and longitude:
+    >
+    > |                                  | `litebird_sim` | `SANEPIC`         |
+    > | -------------------------------- | -------------- | ----------------- |
+    > | Dec (colatitude) range           | $(0, \pi]$     | $(-\pi/2, \pi/2]$ |
+    > | RA (longitude) range             | $(-\pi, \pi]$  | $(0, 2\pi]$       |
+    > | psi (detector orientation angle) | $(-\pi, \pi]$  | $(-\pi, \pi]$     |
 
 6. **`segment_list_<nn>_<seglength>.bi`**
 
@@ -84,7 +93,6 @@ Once all the input files have been prepared and parameters are updated in the sh
 ```bash
 bash run_sanepic.sh
 ```
-
 
 ## SANEPIC outputs
 
