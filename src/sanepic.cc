@@ -170,8 +170,9 @@ void usage(char *name) {
        << endl;
   cerr << "-B <bolo ext>          bolo field extension"
        << endl; // Detector name $dataSuffixe
+  cerr << "-C <bolo name>         Add a single bolometer (can be repeated; see also -D)" << endl;
   cerr << "-d <Det number>        Number of detectors to include" << endl;
-  cerr << "-D <detector list>     List of detectors to include" << endl;
+  cerr << "-D <detector list>     List of detectors to include (see also -C)" << endl;
   cerr << "-e <output file str>   id string in output file" << endl;
   cerr << "-F <data dir>          source data directory"
        << endl; // input data directory for toi
