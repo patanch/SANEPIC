@@ -884,14 +884,14 @@ int main(int argc, char *argv[]) {
   for (ii = 0; ii < 12 * nside * nside; ii++)
     pixonall[ii] = 0;
 
-  MPI_Reduce(pixon, pixonall, 12 * nside * nside, MPI_DOUBLE, MPI_SUM, 0,
+  MPI_Reduce(pixon, pixonall, 12 * nside * nside, MPI_LONG, MPI_SUM, 0,
              newcomm);
 
   for (ii = 0; ii < 12 * nside * nside; ii++)
     pixon[ii] = pixonall[ii];
 
   MPI_Barrier(MPI_COMM_WORLD);
-  MPI_Bcast(pixon, 12 * nside * nside, MPI_DOUBLE, 0, newcomm);
+  MPI_Bcast(pixon, 12 * nside * nside, MPI_LONG, 0, newcomm);
 
   delete[] pixonall;
 
