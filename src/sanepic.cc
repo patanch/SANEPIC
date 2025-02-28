@@ -245,7 +245,7 @@ int main(int argc, char *argv[]) {
   int MyErr;
   long NbWrite;
   string Command, CommandW, MyStr;
-  char mapoutstr[100], NoiseSpFiledet[100], namefilering[300];
+  char mapoutstr[300], NoiseSpFiledet[300], namefilering[300];
   string pbrGRP, pbrptgGRP, vectGRP, logger, logStr;
 
   int size;
@@ -3065,7 +3065,7 @@ long ReadVECT(void *data, string filename, long typesize, long imin,
   FILE *fp;
   long status;
 
-  char ffname[100];
+  char ffname[300];
   strcpy(ffname, filename.c_str());
 
   long nn = (imax - imin + 1);
@@ -3161,8 +3161,8 @@ void read_bolo_offsets(string bolo, string file_BoloOffsets, double *offsets) {
   long num, pnum;
   int nobolo = 1;
 
-  char boloname[100];
-  char tempchar[100];
+  char boloname[300];
+  char tempchar[300];
   FILE *fp;
 
   if ((fp = fopen(file_BoloOffsets.c_str(), "r")) == NULL) {
